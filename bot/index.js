@@ -3,7 +3,8 @@
 const TelegramBot = require("node-telegram-bot-api")
 const TelegramBotToket = process.env.TELEGRAM_BOT_TOKEN || "5206127735:AAFYvyoPMSJGs9Rhk2ezGueYcS2s57wgGqI"
 // const TelegramChannel = "@beardman4devTest"
-const TelegramChannel = "-1001706426512"
+const TelegramPrivateChannel = "-1001706426512"
+const TelegramBotChannel = "1055809257"
 
 module.exports.start = () => {
     const bot = new TelegramBot(TelegramBotToket, { polling: true })
@@ -14,7 +15,7 @@ module.exports.start = () => {
     ]
 
     bot.setMyCommands(myCommand)
-    bot.sendMessage(TelegramChannel, "Started!")
+    bot.sendMessage(TelegramBotChannel, "Started!")
 
     bot.on("message", (msg) => {
         console.log({ message: msg })
@@ -37,7 +38,7 @@ function cbHello(msg, match) {
 
 function cbHelp(msg, match) {
     const a = 1
-    bot.sendMessage(TelegramChannel, match)
+    bot.sendMessage(TelegramPrivateChannel, match)
     // bot.sendMessage(msg.chat.id, `Match cbHelp: ${match}`)
     // msg.telegram.sendMessage(TelegramChannel, match)
 }
