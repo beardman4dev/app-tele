@@ -12,6 +12,7 @@ const myCommand = [
     { command: "help", description: "say ololo help", cb: cbHelp },
 ]
 bot.setMyCommands(myCommand)
+bot.sendMessage(TelegramChannel, "Started!")
 // ;(async () => {
 //     const chat = await bot.getChat(TelegramChannel)
 //     const a = 3
