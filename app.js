@@ -19,7 +19,7 @@ app.get("/run", async (req, res) => {
 })
 
 const server = app.listen(port, () => {
-    console.log(`TestingHost on ${port} port`)
+    console.log(`Started on ${port} port.`)
 })
 server.keepAliveTimeout = 65000 // Ensure all inactive connections are terminated by the ALB, by setting this a few seconds higher than the ALB idle timeout
 server.headersTimeout = 66000
