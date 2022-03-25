@@ -13,3 +13,5 @@ const server = app.listen(port, () => console.log({ started: `Started on ${port}
 
 server.keepAliveTimeout = 65000 // Ensure all inactive connections are terminated by the ALB, by setting this a few seconds higher than the ALB idle timeout
 server.headersTimeout = 66000
+
+bot.start()
