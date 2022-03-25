@@ -1,18 +1,14 @@
 "use strict"
 
 const express = require("express")
+const controllers = require("./controllers")
+const bot = require("./bot")
 
 const app = express()
+controllers.init(app)
 
-app.get("/", (req, res) => {
-    res.send("Hola!")
+const server = app.listen(4040, () => {
+    console.log(`TestingHost on 4040 port`)
 })
-
-app.get("/run", async (req, res) => {
-    const result = {}
-    res.send(result)
-})
-
-const server = app.listen(4040, console.log(`TestingHost`))
 server.keepAliveTimeout = 65000 // Ensure all inactive connections are terminated by the ALB, by setting this a few seconds higher than the ALB idle timeout
 server.headersTimeout = 66000
