@@ -1,7 +1,7 @@
 "use strict"
 
 const express = require("express")
-const bot = require("./bot")
+// const bot = require("./bot")
 const port = process.env.PORT || 80
 
 const app = express()
