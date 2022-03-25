@@ -5,33 +5,31 @@ const TelegramBotToket = process.env.TELEGRAM_BOT_TOKEN || "5206127735:AAFYvyoPM
 // const TelegramChannel = "@beardman4devTest"
 const TelegramChannel = "-1001706426512"
 
-const bot = new TelegramBot(TelegramBotToket, { polling: true })
+module.exports.start = () => {
+    const bot = new TelegramBot(TelegramBotToket, { polling: true })
 
-const myCommand = [
-    { command: "hello", description: "say hello", cb: cbHello },
-    { command: "help", description: "say ololo help", cb: cbHelp },
-]
-bot.setMyCommands(myCommand)
-bot.sendMessage(TelegramChannel, "Started!")
-// ;(async () => {
-//     const chat = await bot.getChat(TelegramChannel)
-//     const a = 3
-// })()
+    const myCommand = [
+        { command: "hello", description: "say hello", cb: cbHello },
+        { command: "help", description: "say ololo help", cb: cbHelp },
+    ]
 
-// bot.on("message", (msg) => {
-//     console.log({ message: msg })
+    bot.setMyCommands(myCommand)
+    bot.sendMessage(TelegramChannel, "Started!")
 
-//     // bot.sendMessage(msg.chat.id, "Ololo")
-// })
+    bot.on("message", (msg) => {
+        console.log({ message: msg })
+        // bot.sendMessage(msg.chat.id, "Ololo")
+    })
 
-bot.onText(/\/(help|hello) (.+)/, (msg, match) => {
-    console.log({ msg, match })
+    bot.onText(/\/(help|hello) (.+)/, (msg, match) => {
+        console.log({ msg, match })
 
-    const obj = myCommand.find((el) => el.command === match[1])
-    if (obj) {
-        obj.cb(msg, match[2])
-    }
-})
+        const obj = myCommand.find((el) => el.command === match[1])
+        if (obj) {
+            obj.cb(msg, match[2])
+        }
+    })
+}
 
 function cbHello(msg, match) {
     bot.sendMessage(msg.chat.id, `Match: ${match}`)
